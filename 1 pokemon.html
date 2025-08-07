@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Founder Maded Website</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 25px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+    }
+
+    header h1 {
+      font-size: 2.7rem;
+      color: #ffde59;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 20px;
+      gap: 30px;
+    }
+
+    .product {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      width: 260px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .product:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: 0.3s ease;
+    }
+
+    .product h2 {
+      font-size: 1.3rem;
+      margin: 12px 0 6px;
+    }
+
+    .product p {
+      font-size: 1rem;
+      margin: 4px 0;
+    }
+
+    .product button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background-color: #ffde59;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .product button:hover {
+      background-color: #fff040;
+    }
+
+    #cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      z-index: 999;
+    }
+
+    #cartCount {
+      font-weight: bold;
+      color: #d33;
+    }
+
+    #cartTotal {
+      font-weight: bold;
+      color: #28a745;
+    }
+
+    footer {
+      padding: 30px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.2);
+      backdrop-filter: blur(4px);
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    @media (max-width: 600px) {
+      .product {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🛍️ Our Founder Maded Website</h1>
+</header>
+
+<div id="cart">🛒 Cart: <span id="cartCount">0</span> items | Total: $<span id="cartTotal">0</span></div>
+
+<div class="container" id="productContainer">
+  <!-- Products will be inserted here -->
+</div>
+
+<footer>
+  © 2025 Codelith. All rights reserved. Built with 💖 by Our Founder.
+</footer>
+
+<script>
+  const products = [
+    {
+      name: "Bluetooth Speaker",
+      price: 45,
+      image: "https://images.unsplash.com/photo-1585386959984-a415522f4c1a?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Laptop Stand",
+      price: 29,
+      image: "https://images.unsplash.com/photo-1587829741301-dc798b82b5f9?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Smart Glasses",
+      price: 89,
+      image: "https://images.unsplash.com/photo-1587031730627-6b1c95b5dddf?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Portable Fan",
+      price: 19,
+      image: "https://images.unsplash.com/photo-1621354057373-dcb52f3c9d2f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Fitness Tracker",
+      price: 99,
+      image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Backpack",
+      price: 65,
+      image: "https://images.unsplash.com/photo-1589149098258-3e9102cd63d5?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Gaming Headset",
+      price: 75,
+      image: "https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Drone",
+      price: 249,
+      image: "https://images.unsplash.com/photo-1581091870631-4c3bfb4a8ad6?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Digital Camera",
+      price: 499,
+      image: "https://images.unsplash.com/photo-1519183071298-a2962be96f35?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Mechanical Keyboard",
+      price: 89,
+      image: "https://images.unsplash.com/photo-1517059224940-d4af9eec41e7?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Smartwatch",
+      price: 129,
+      image: "https://images.unsplash.com/photo-1516728778615-2d590ea1856f?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      name: "Wireless Mouse",
+      price: 25,
+      image: "https://images.unsplash.com/photo-1583337130417-3346a1af9b5b?auto=format&fit=crop&w=600&q=80"
+    }
+  ];
+
+  let cartCount = 0;
+  let cartTotal = 0;
+
+  function updateCart(price) {
+    cartCount++;
+    cartTotal += price;
+    document.getElementById("cartCount").textContent = cartCount;
+    document.getElementById("cartTotal").textContent = cartTotal;
+  }
+
+  function loadProducts() {
+    const container = document.getElementById("productContainer");
+    products.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.innerHTML = `
+        <img src="${p.image}" alt="${p.name}">
+        <h2>${p.name}</h2>
+        <p>Price: $${p.price}</p>
+        <button onclick="updateCart(${p.price})">Add to Cart</button>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  window.onload = loadProducts;
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Founder Maded Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+
+    header {
+      background-color: #111;
+      padding: 20px 40px;
+      text-align: center;
+      border-bottom: 3px solid #444;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #00ffd5;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-image: url('https://images.unsplash.com/photo-1606813902884-8c345fece61d?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .product-card {
+      background-color: #1c1c1c;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.7);
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-card h3 {
+      margin: 10px;
+      font-size: 20px;
+    }
+
+    .product-card p {
+      margin: 0 10px 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .buy-btn {
+      display: block;
+      margin: 0 10px 15px;
+      padding: 10px;
+      background: #00ffd5;
+      color: #000;
+      text-align: center;
+      border-radius: 5px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #111;
+      border-top: 2px solid #444;
+      font-size: 14px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Founder Maded Website</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to the Epic Gaming Store</h2>
+    <p>Discover, explore, and buy the most thrilling games of the decade — all in one place!</p>
+  </section>
+
+  <section class="products">
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1622467848246-0c90dbdbb2a7?auto=format&fit=crop&w=800&q=80" alt="Game 1">
+      <h3>Cyber Fury 2077</h3>
+      <p>A futuristic open-world RPG with intense action and stunning visuals.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1619027381794-bb6b72c0bb52?auto=format&fit=crop&w=800&q=80" alt="Game 2">
+      <h3>Dragon Reborn</h3>
+      <p>Embark on a legendary journey in a realm of dragons, magic, and destiny.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1644438257456-0f0d1b1b0c2a?auto=format&fit=crop&w=800&q=80" alt="Game 3">
+      <h3>WarZone X</h3>
+      <p>Join massive multiplayer battles in this fast-paced military shooter.</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1618005198919-d3d25b3a06f8?auto=format&fit=crop&w=800&q=80" alt="Game 4">
+      <h3>Pixel Quest</h3>
+      <p>A retro-style adventure with modern mechanics and endless fun!</p>
+      <a href="#" class="buy-btn">Buy Now</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Codelith Gaming Store | Made by Our Founder
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Founder Maded Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f5f8ff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      background: #0d1b2a;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #1e3c72;
+    }
+
+    .services, .about {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #2a5298;
+    }
+
+    footer {
+      background: #0d1b2a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Founder Maded Website</h1>
+    <p>Modern IT Solutions for the Future</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Services</a>
+    <a href="#">Projects</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="Web Dev" />
+        <h3>Web Development</h3>
+        <p>High-performance websites using latest technologies like React, Node, and Django.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/9068/9068643.png" alt="Cyber Security" />
+        <h3>Cyber Security</h3>
+        <p>Enterprise-grade protection and penetration testing with reports and audit.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2942/2942871.png" alt="Cloud" />
+        <h3>Cloud Solutions</h3>
+        <p>Scalable cloud infrastructure and DevOps deployment across AWS, Azure, and GCP.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>About the Founder</h2>
+    <div class="about">
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Founder" />
+        <h3>Muhammad Abdullah</h3>
+        <p>A visionary developer who started from scratch and built Codelith — a tech revolution in Pakistan. From games to ecommerce to AI, he codes it all!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Codelith Technologies | All rights reserved.
+  </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Founder Maded Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #0077ff, #00d4ff);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 20px;
+    }
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #00d4ff;
+    }
+    section {
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .services, .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card h3 {
+      padding: 15px;
+      font-size: 22px;
+      background: #f7f7f7;
+    }
+    .card p {
+      padding: 0 15px 15px;
+    }
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Our Founder Maded Website</h1>
+  <p>Crafted with love and creativity to inspire innovation and excellence.</p>
+</header>
+
+<nav>
+  <a href="#services">Services</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="services">
+  <h2 style="text-align:center;margin-bottom:30px;">Our IT Services</h2>
+  <div class="services">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581092334910-7d83e97fb1e7?auto=format&fit=crop&w=800&q=80" alt="Web Development">
+      <h3>Web Development</h3>
+      <p>We build responsive, high-performance websites and apps tailored to your business goals.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1633113214119-64e2fdc59fe6?auto=format&fit=crop&w=800&q=80" alt="AI Development">
+      <h3>AI Solutions</h3>
+      <p>Integrate AI to automate your workflows and enhance user experience with intelligent systems.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1623058668203-3df86f6cce6a?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity">
+      <h3>Cybersecurity</h3>
+      <p>Protect your digital assets with robust, cutting-edge cybersecurity solutions and monitoring.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2 style="text-align:center;margin-bottom:30px;">Our Founder Projects</h2>
+  <div class="projects">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1642338896099-d1a3345b05b7?auto=format&fit=crop&w=800&q=80" alt="Gaming App">
+      <h3>Epic Pikachu Game</h3>
+      <p>A 2D web-based Pikachu adventure game built using JavaScript, HTML5, and real-time effects.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80" alt="Store">
+      <h3>Epic E-Commerce Website</h3>
+      <p>Fully functional online shopping site with secure checkout, product filtering, and custom CMS.</p>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?auto=format&fit=crop&w=800&q=80" alt="AI Bot">
+      <h3>Codelith AI Assistant</h3>
+      <p>Multi-modal AI chat assistant powered by OpenAI, capable of coding, image generation, and voice.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 style="text-align:center;margin-bottom:30px;">Get in Touch</h2>
+  <form style="max-width:500px;margin:auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.1);">
+    <input type="text" placeholder="Your Name" style="width:100%;padding:10px;margin-bottom:10px;" required>
+    <input type="email" placeholder="Your Email" style="width:100%;padding:10px;margin-bottom:10px;" required>
+    <textarea placeholder="Your Message" rows="5" style="width:100%;padding:10px;margin-bottom:10px;" required></textarea>
+    <button type="submit" style="background:#0077ff;color:#fff;border:none;padding:10px 20px;border-radius:5px;cursor:pointer;">Send</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Our Founder Maded Website | Powered by Codelith</p>
+</footer>
+
+</body>
+</html>

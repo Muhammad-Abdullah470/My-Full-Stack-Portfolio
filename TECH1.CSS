@@ -1,0 +1,169 @@
+/* General styling */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Navigation styles */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0, 0, 255, 0.85); /* Semi-transparent blue */
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+  min-height: 80px;
+}
+
+li {
+  margin-left: 30px;
+  color: white;
+  font-size: 1.1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+li:hover {
+  color: #ffeb3b;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* Links styling */
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #00ffff; /* Aqua */
+}
+
+/* Logo positioning */
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  height: 50px;
+  width: auto;
+}
+
+/* Heading styling */
+.A {
+  text-align: center;
+  color: #222;
+  margin-top: 100px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 300;
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+
+/* Shared slider animation */
+.slider, .slider1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1s ease-out forwards;
+  margin: 50px auto;
+  max-width: 80%;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  padding: 20px;
+}
+
+.slider {
+  animation-delay: 0.5s;
+}
+
+.slider1 {
+  animation-delay: 1.5s;
+}
+
+/* Keyframes for fade-in and slide-up */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Paragraph styling inside sliders */
+#paragraph, #description {
+  color: #4e342e; /* Dark brown */
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 20px 0;
+  text-align: center;
+}
+
+#paragraph strong, #description strong {
+  color: #000;
+}
+
+/* Images in sliders */
+.slider img, .slider1 img {
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.5s ease;
+}
+
+.slider img:hover, .slider1 img:hover {
+  transform: scale(1.05) rotate(-1deg);
+}
+
+/* Footer styling */
+footer {
+  background-color: #001f3f;
+  color: #ccc;
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #ffd700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #00ffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  ul {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  li {
+    margin: 10px 0;
+  }
+  .A {
+    font-size: 2rem;
+    margin-top: 70px;
+  }
+  .slider, .slider1 {
+    max-width: 95%;
+  }
+}

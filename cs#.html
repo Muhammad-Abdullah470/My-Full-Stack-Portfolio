@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Certificate Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 40px; }
+    #qrcode { margin: 20px auto; }
+  </style>
+</head>
+<body>
+
+  <h1>Certificate Generator</h1>
+
+  <label>Name:</label><br />
+  <input id="name" type="text" value="Muhammad Abdullah" style="width:300px; font-size:18px;" /><br /><br />
+
+  <label>URL for QR Code:</label><br />
+  <input id="url" type="text" value="https://example.com/certificate/muhammad-abdullah" style="width:300px; font-size:18px;" /><br /><br />
+
+  <button onclick="generateCertificate()">Generate PDF</button>
+
+  <div id="qrcode"></div>
+
+  <script>
+    async function generateCertificate() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({
+        orientation: 'landscape',
+        unit: 'pt',
+        format: 'a4'
+      });
+
+      const name = document.getElementById('name').value;
+      const url = document.getElementById('url').value;
+
+      // Clear old QR code if any
+      document.getElementById('qrcode').innerHTML = '';
+
+      // Generate QR code in a temporary div
+      const qrDiv = document.getElementById('qrcode');
+      const qrCode = new QRCode(qrDiv, {
+        text: url,
+        width: 120,
+        height: 120,
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      // Wait a bit to render QR code and get its img
+      setTimeout(() => {
+        // Get the QR code image from canvas or img tag inside qrDiv
+        const qrImg = qrDiv.querySelector('img') || qrDiv.querySelector('canvas');
+        if (!qrImg) {
+          alert('QR code generation failed');
+          return;
+        }
+
+        // Add certificate text
+        doc.setFontSize(36);
+        doc.setTextColor(0, 70, 140);
+        doc.text('Certificate of Achievement', doc.internal.pageSize.getWidth() / 2, 100, { align: 'center' });
+
+        doc.setFontSize(20);
+        doc.setTextColor(0, 0, 0);
+        doc.text('This certificate is proudly presented to', doc.internal.pageSize.getWidth() / 2, 160, { align: 'center' });
+
+        doc.setFontSize(30);
+        doc.setTextColor(0, 102, 204);
+        doc.text(name, doc.internal.pageSize.getWidth() / 2, 210, { align: 'center' });
+
+        doc.setFontSize(16);
+        doc.setTextColor(50, 50, 50);
+        doc.text('In recognition of your outstanding performance and dedication.', doc.internal.pageSize.getWidth() / 2, 260, { align: 'center' });
+
+        // Add QR code image
+        const qrDataUrl = qrImg.src || qrImg.toDataURL('image/png');
+        doc.addImage(qrDataUrl, 'PNG', (doc.internal.pageSize.getWidth() - 120) / 2, 300, 120, 120);
+
+        // Add clickable URL below QR code
+        doc.setTextColor(0, 0, 255);
+        doc.setFontSize(12);
+        doc.textWithLink(url, doc.internal.pageSize.getWidth() / 2, 440, { align: 'center', url: url });
+
+        // Add date at bottom right
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(10);
+        const dateStr = new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' });
+        doc.text(`Date: ${dateStr}`, doc.internal.pageSize.getWidth() - 70, doc.internal.pageSize.getHeight() - 40);
+
+        // Save PDF
+        doc.save(`Certificate_${name.replace(/\s/g, '')}.pdf`);
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>

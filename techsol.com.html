@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta AI Video Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #4b9cd3;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #4b9cd3;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-right: 10px;
+    }
+    button:hover {
+      background-color: #357ab8;
+    }
+    .video-frame {
+      width: 100%;
+      height: 300px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .video-frame img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #eee;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Meta AI Video Generator</h1>
+    <p>Create up to 100 free videos from your imagination!</p>
+  </header>
+
+  <section>
+    <h2>🧠 Describe Your Idea</h2>
+    <textarea id="storyInput" placeholder="Type your story here..."></textarea>
+    <button onclick="generateVideo()">Generate Video</button>
+    <button id="downloadBtn" style="display:none;" onclick="downloadImage()">Download Image</button>
+    <p id="counter">Videos created: 0 / 100</p>
+    <div id="videoOutput"></div>
+  </section>
+
+  <footer>
+    <p>© 2025 Meta AI Video Generator. Powered by Techsol.</p>
+  </footer>
+
+  <script>
+    let videoCount = 0;
+    let currentImageUrl = '';
+
+    function generateVideo() {
+      const story = document.getElementById('storyInput').value.trim();
+      const output = document.getElementById('videoOutput');
+      const counter = document.getElementById('counter');
+      const downloadBtn = document.getElementById('downloadBtn');
+
+      if (videoCount >= 100) {
+        output.innerHTML = '<p>🚫 You have reached the free limit of 100 videos.</p>';
+        downloadBtn.style.display = 'none';
+        return;
+      }
+
+      if (!story) {
+        output.innerHTML = '<p>Please enter a story to generate a video.</p>';
+        downloadBtn.style.display = 'none';
+        return;
+      }
+
+      videoCount++;
+      counter.textContent = `Videos created: ${videoCount} / 100`;
+
+      // Simulate image generation using placeholder
+      currentImageUrl = `https://via.placeholder.com/640x360.png?text=${encodeURIComponent(story)}`;
+
+      output.innerHTML = `
+        <h3>🧠 Thinking like an AI...</h3>
+        <div class="video-frame">
+          <img src="${currentImageUrl}" alt="Generated from: ${story}" />
+        </div>
+        <p>🎬 "${story}"</p>
+      `;
+
+      downloadBtn.style.display = 'inline-block';
+    }
+
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.href = currentImageUrl;
+      link.download = 'meta_ai_video.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
