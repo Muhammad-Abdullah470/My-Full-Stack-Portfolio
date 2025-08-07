@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ISATI – Aeronautical Services</title>
+  <link rel="stylesheet" href="isati.css">
+</head>
+<body>
+  <header>
+    <h1>ISATI – Aeronautical Services</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>We provide specialized aeronautical services worldwide...</p>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <ul>
+      <li>Design & CATIA modeling</li>
+      <li>Stress & fatigue analysis</li>
+      <li>Maintenance & logistics support</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Company Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ISATI SRL. Privacy Policy | Legal Notice</p>
+  </footer>
+  <script>
+  document.querySelector("form").addEventListener("submit", function(event) {
+  const email = document.querySelector("[name='Email']").value;
+  const phone = document.querySelector("[name='Phone Number']").value;
+
+  if (!email || !phone) {
+    alert("Please fill in both email and phone number.");
+    event.preventDefault();
+  }
+});
+document.querySelectorAll("a[href^='#']").forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+  });
+});
+document.querySelector("footer").innerHTML += ` ${new Date().getFullYear()}`;
+
+</script>
+
+</body>
+</html>

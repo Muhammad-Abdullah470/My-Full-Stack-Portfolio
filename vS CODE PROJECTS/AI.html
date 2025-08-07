@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Codelith AI 🤖</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0b0c10;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #1f2833;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: #66fcf1;
+    }
+    #chatbox {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 70%;
+    }
+    .user { background-color: #45a29e; align-self: flex-end; text-align: right; }
+    .ai { background-color: #1f2833; align-self: flex-start; text-align: left; }
+    #inputBox {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      background: #0b0c10;
+    }
+    #userInput {
+      width: 60%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      background-color: #66fcf1;
+      border: none;
+      color: #0b0c10;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #45a29e; }
+    img.generated-image {
+      margin-top: 10px;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>Codelith AI 🤖</header>
+
+  <div id="chatbox"></div>
+
+  <div id="inputBox">
+    <input type="text" id="userInput" placeholder="Ask me or say 'generate an image of...'">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="startVoice()">🎙️</button>
+  </div>
+
+  <!-- ✅ External JS file linked here -->
+  <script src="codelith.js"></script>
+</body>
+</html>

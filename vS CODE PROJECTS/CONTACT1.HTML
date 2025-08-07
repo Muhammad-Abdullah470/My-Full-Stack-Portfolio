@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Contact Us - Codelith</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #1c1c1c, #2e2e2e);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 1px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .contact-section {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 2.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      color: #00c6ff;
+      margin-bottom: 2rem;
+      font-size: 2.2rem;
+    }
+
+    form {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    form input, form textarea {
+      padding: 14px 18px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      background: #2c2c2c;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #aaa;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      outline: none;
+      background: #333;
+      box-shadow: 0 0 10px #00c6ff;
+    }
+
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    form button {
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    form button:hover {
+      background: linear-gradient(90deg, #0072ff, #00c6ff);
+      transform: scale(1.05);
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: #ccc;
+    }
+
+    .contact-info p {
+      margin: 0.6rem 0;
+      font-size: 1.05rem;
+    }
+
+    .contact-info i {
+      margin-right: 8px;
+      color: #00c6ff;
+    }
+
+    footer {
+      margin-top: 4rem;
+      background: #000;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #aaa;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .contact-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fas fa-envelope"></i> Contact Codelith</h1>
+  </header>
+
+  <section class="contact-section">
+    <h2><i class="fas fa-paper-plane"></i> Get in Touch</h2>
+
+    <form action="https://formsubmit.co/bulligulli109@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Contact Form Submission from Codelith">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Your Message..." required></textarea>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <p><i class="fas fa-envelope"></i> contact@codelith.tech</p>
+      <p><i class="fas fa-phone"></i> +92 3445434926</p>
+      <p><i class="fas fa-map-marker-alt"></i> Codelith HQ, Innovation Street, Islamabad, Pakistan</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Codelith. All rights reserved.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Developer Cards</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.8em;
+      color: #003366;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 2px solid transparent;
+      animation: slideInUp 1s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+      border: 2px solid #0077cc;
+    }
+
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      border: 3px solid #0077cc;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .card h2 {
+      font-size: 1.6em;
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+
+    .card p {
+      font-size: 1em;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 5px #0077cc;
+      }
+      to {
+        text-shadow: 0 0 20px #0077cc;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Our Amazing Full Stack Developers</h1>
+
+  <div class="card-container">
+    
+    <!-- Abdullah Card -->
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4333/4333609.png" alt="Founder Abdullah">
+      <h2>Muhammad Abdullah</h2>
+      <p>Founder of Codelith and Full Stack Developer Expert. Built Shop Nestle and many websites.</p>
+    </div>
+
+    <!-- Zarrar Card -->
+    <div class="card">
+      <img src="https://static.vecteezy.com/system/resources/previews/014/176/992/non_2x/young-bearded-man-free-vector.jpg" alt="Member Zarrar">
+      <h2>Muhammad Zarrar</h2>
+      <p>Certified Full Stack Developer and Certified in Cyber Security who built an epic Cat Painting Project.</p>
+    </div>
+
+    <!-- Saqib Card -->
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Member Saqib">
+      <h2>Muhammad Saqib</h2>
+      <p>An expert Certified Full Stack Developer and Certified in Cyber Security with many skills. Created the Hotel Feedback Form project and also a Certified.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lighting World Explorer</title>
+  <style>
+    body { margin: 0; background: #0c0c26; }
+    canvas { display: block; margin: auto; background: #202040; }
+
+    #info {
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="info">Use Arrow Keys to Move ✨</div>
+  <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let player = { x: 300, y: 200, size: 20 };
+    let pals = [
+      { x: 100, y: 100, name: "Lumina" },
+      { x: 400, y: 300, name: "Sparkko" }
+    ];
+
+    function drawScene() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ffe0';
+      ctx.fillRect(player.x, player.y, player.size, player.size);
+
+      // Draw Pals
+      pals.forEach(pal => {
+        ctx.fillStyle = '#ff00cc';
+        ctx.beginPath();
+        ctx.arc(pal.x, pal.y, 10, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function checkEncounter() {
+      pals.forEach(pal => {
+        const dx = player.x - pal.x;
+        const dy = player.y - pal.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 25) {
+          alert(`You encountered a Pal: ${pal.name}!`);
+        }
+      });
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp") player.y -= 10;
+      if (e.key === "ArrowDown") player.y += 10;
+      if (e.key === "ArrowLeft") player.x -= 10;
+      if (e.key === "ArrowRight") player.x += 10;
+      drawScene();
+      checkEncounter();
+    });
+
+    drawScene();
+  </script>
+</body>
+</html>

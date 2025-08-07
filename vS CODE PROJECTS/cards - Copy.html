@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playing Cards</title>
+  <style>
+    #playing-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      justify-content: space-between;
+      width: 100px;
+      height: 150px;
+      border: 1px solid black;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .left {
+      align-self: flex-start;
+    }
+
+    .middle {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .right {
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+
+  <main id="playing-cards">
+    <div class="card">
+      <div class="left">A♠</div>
+      <div class="middle">♠</div>
+      <div class="right">A♠</div>
+    </div>
+    <div class="card">
+      <div class="left">K♥</div>
+      <div class="middle">♥</div>
+      <div class="right">K♥</div>
+    </div>
+    <div class="card">
+      <div class="left">Q♣</div>
+      <div class="middle">♣</div>
+      <div class="right">Q♣</div>
+    </div>
+  

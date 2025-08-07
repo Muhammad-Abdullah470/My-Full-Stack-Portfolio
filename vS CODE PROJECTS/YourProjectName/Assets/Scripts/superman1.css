@@ -1,0 +1,31 @@
+
+body{
+  background-image:url(https://th.bing.com/th/id/R.f5ccf94ce7e41dba81eae5fc2221a5da?rik=Wr4xrnjczClgQA&pid=ImgRaw&r=0);
+}
+h1{
+  color: aqua;
+  text-align: center;
+}
+h2{
+  color: chartreuse;
+  text-align: center;
+}
+p{
+  color: yellow;
+  text-align: center;
+}
+.a{
+  align-items: center;
+}
+.b{
+  align-items: center;
+}
+ul{
+ color:antiquewhite
+}
+li{
+  color: darkblue;
+}
+a{
+ hover:aqua
+}

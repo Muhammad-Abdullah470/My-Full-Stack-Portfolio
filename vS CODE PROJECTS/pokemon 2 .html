@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Founder Made This Game | Codelith</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #00ffc8, #ffa1f5);
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    .container {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: #fff;
+      text-shadow: 2px 2px #000;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .game-icon {
+      width: 150px;
+      height: 150px;
+      animation: float 3s ease-in-out infinite;
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    .game-icon:hover {
+      transform: scale(1.15);
+    }
+
+    .btn {
+      padding: 14px 28px;
+      font-size: 18px;
+      margin-top: 30px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #00ffae, #00b0ff);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    .card {
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.8);
+      max-width: 900px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .card h2 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    #gameSection {
+      display: none;
+      margin-top: 60px;
+    }
+
+    canvas {
+      background-color: #e9f7e9;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 14px;
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .instructions {
+      background: #fff;
+      border-left: 8px solid #00d1ff;
+      padding: 20px;
+      margin-top: 30px;
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+      color: #444;
+    }
+
+    .instructions strong {
+      color: #ff007a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🌟 Our Founder Made This Game 🌟</h1>
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" class="game-icon" alt="Pikachu Game Icon">
+    <div>
+      <button class="btn" onclick="startGame()">🎮 Play Game</button>
+    </div>
+
+    <div class="card"> 
+      <h2>Why We Made This</h2>
+      <p>This game was built to showcase the creativity and technical brilliance of our founder at <strong>Codelith</strong>. It reflects our passion for innovation, interactive learning, and the joy of building games using code. As a tribute to simplicity and fun, this Pikachu-themed mini game was entirely crafted in JavaScript and rendered on HTML5 canvas.</p>
+    </div>
+
+    <div class="instructions">
+      <h3>🎯 Game Controls:</h3>
+      <p>
+        <strong>W/A/S/D:</strong> Move Player<br>
+        <strong>F:</strong> Fire Bullet <br>
+        <strong>1-9:</strong> Use Special Powers (Heal, Firestorm, Stun, Giant Mode, etc.)<br>
+        <strong>C:</strong> Catch Pals<br>
+        <strong>Z:</strong> Collect Resources<br>
+        <strong>E:</strong> Use Crafting Table
+      </p>
+    </div>
+
+    <div id="gameSection">
+      <canvas id="gameCanvas" width="800" height="600"></canvas>
+    </div>
+  </div>
+
+  <footer>© 2025 Codelith. All rights reserved. | Built with 💖 by our Founder</footer>
+
+  <script>
+    function startGame() {
+      document.getElementById("gameSection").style.display = "block";
+      document.querySelector(".btn").style.display = "none";
+      document.querySelector("h1").textContent = "🔥 Palworld Jungle Game 🔥";
+      runGameCode();
+    }
+
+    function runGameCode() {
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let x = canvas.width / 2;
+      let y = canvas.height / 2;
+      let size = 30;
+      let speed = 5;
+
+      const keys = {
+        w: false,
+        a: false,
+        s: false,
+        d: false
+      };
+
+      document.addEventListener("keydown", e => {
+        if (keys.hasOwnProperty(e.key.toLowerCase())) {
+          keys[e.key.toLowerCase()] = true;
+        }
+      });
+
+      document.addEventListener("keyup", e => {
+        if (keys.hasOwnProperty(e.key.toLowerCase())) {
+          keys[e.key.toLowerCase()] = false;
+        }
+      });
+
+      function update() {
+        if (keys.w) y -= speed;
+        if (keys.a) x -= speed;
+        if (keys.s) y += speed;
+        if (keys.d) x += speed;
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#f2c94c"; // Pikachu Yellow
+        ctx.fillRect(x, y, size, size);
+        requestAnimationFrame(update);
+      }
+
+      update();
+    }
+  </script>
+
+</body>
+</html>

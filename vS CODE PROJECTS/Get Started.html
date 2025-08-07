@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Started - Codelith</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Preloader */
+    #preloader {
+      background: #001f4d;
+      color: white;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      font-size: 2rem;
+      animation: fadeOut 1s ease 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      background: linear-gradient(to right, #001f4d, #004080);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transform: perspective(1000px) rotateX(0deg);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .get-started {
+      max-width: 1100px;
+      margin: 5rem auto;
+      background: rgba(255,255,255,0.95);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      animation: slideUp 1s ease-in-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .get-started h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #003366;
+    }
+
+    .intro-text {
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .feature {
+      background-color: #f0f8ff;
+      padding: 2rem;
+      border-left: 6px solid #0077cc;
+      border-radius: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature h3 {
+      color: #004080;
+      margin-bottom: 1rem;
+    }
+
+    .feature p {
+      color: #333;
+    }
+
+    .highlight {
+      background: #e6f0ff;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-left: 5px solid #005fa3;
+      border-radius: 10px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cta a {
+      background: #0077cc;
+      color: white;
+      text-decoration: none;
+      padding: 15px 35px;
+      font-size: 1.2rem;
+      border-radius: 12px;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta a:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      background: #001f4d;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 5rem;
+    }
+
+    /* Music button */
+    #musicControl {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">🚀 Loading Codelith...</div>
+
+  <!-- Particles Background -->
+  <div id="particles-js"></div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mpeg">
+  </audio>
+  <button id="musicControl">🔊 Play Music</button>
+
+  <header>
+    <h1>Get Started with Codelith</h1>
+  </header>
+
+  <section class="get-started">
+    <h2>Welcome to the Future of Digital Creation</h2>
+    <p class="intro-text">
+      Codelith is your ultimate platform for turning imagination into innovation. Whether you're building powerful AI, launching an ecommerce empire, or exploring futuristic projects — you're in the right place.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <h3>🚀 Developer Playground</h3>
+        <p>Use HTML, JavaScript, Python, and AI to launch full-stack intelligent applications.</p>
+      </div>
+      <div class="feature">
+        <h3>🎮 Gaming Universe</h3>
+        <p>Play founder-built games like Pikachu and Palworld Jungle, crafted for learning and fun.</p>
+      </div>
+      <div class="feature">
+        <h3>🛒 Ecommerce Engines</h3>
+        <p>Create advanced ecommerce systems with carts, payments, and product logic.</p>
+      </div>
+      <div class="feature">
+        <h3>💡 Next-Level Projects</h3>
+        <p>Build AI Chatbots, animation tools, and realistic web apps with modern stacks.</p>
+      </div>
+      <div class="feature">
+        <h3>🌍 Global Community</h3>
+        <p>Join developers and creators who love to share, build, and grow together.</p>
+      </div>
+      <div class="feature">
+        <h3>📚 Learn as You Build</h3>
+        <p>Build real projects and learn while doing — with guides, docs, and live examples.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <p>✨ Dive into our most exciting creations including AI-integrated games, ecommerce templates, cartoon characters, and powerful web interfaces.</p>
+    </div>
+
+    <div class="cta">
+      <a href="http://127.0.0.1:5500/1%20pokemon.html">Explore Projects</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Codelith. All rights reserved. | Built with ❤️ by our Founder
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script>
+    // Preloader
+    window.addEventListener("load", () => {
+      document.getElementById("preloader").style.display = "none";
+    });
+
+    // Background particles
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 60 },
+        "color": { "value": "#0077cc" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.5 },
+        "size": { "value": 3 },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#0077cc",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 3
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+        }
+      },
+      "retina_detect": true
+    });
+
+    // Music Control
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicControl");
+
+    musicBtn.addEventListener("click", () => {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "🔇 Pause Music";
+      } else {
+        music.pause();
+        musicBtn.textContent = "🔊 Play Music";
+      }
+    });
+  </script>
+</body>
+</html>
